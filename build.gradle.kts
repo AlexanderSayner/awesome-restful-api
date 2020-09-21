@@ -5,12 +5,12 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.10.RELEASE"
 	kotlin("jvm") version "1.3.72"
 	kotlin("plugin.spring") version "1.3.72"
-	application
 }
 
 group = "org.sayner.sandbox.heroku.awesome"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
+java.targetCompatibility = JavaVersion.VERSION_11
 
 repositories {
 	mavenCentral()
@@ -44,14 +44,5 @@ tasks.withType<KotlinCompile> {
 	kotlinOptions {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
 		jvmTarget = "11"
-	}
-}
-
-tasks.withType<Jar>() {
-	manifest {
-		attributes["Main-Class"] = "org.sayner.sandbox.heroku.awesome.RestDemoApplication"
-	}
-	configurations["compileClasspath"].forEach { file: File ->
-		from(zipTree(file.absoluteFile))
 	}
 }

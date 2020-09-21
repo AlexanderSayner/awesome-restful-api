@@ -45,3 +45,12 @@ tasks.withType<KotlinCompile> {
 		jvmTarget = "11"
 	}
 }
+
+tasks.withType<Jar>() {
+	manifest {
+		attributes["Main-Class"] = "org.sayner.sandbox.heroku.awesome.RestDemoApplication"
+	}
+	configurations["compileClasspath"].forEach { file: File ->
+		from(zipTree(file.absoluteFile))
+	}
+}
